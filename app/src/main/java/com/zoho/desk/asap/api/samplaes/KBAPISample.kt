@@ -26,14 +26,7 @@ class KBAPISample {
     fun getKBRootCategories() {
         val params = hashMapOf<String, String>()
         params["from"] = "1"
-        params["limit"] = "2"
-        params["locale"] = "localeCode"
-        params["sortBy"] = "name"
-//        params["sortBy"] = "order"
-        params["searchValue"] = "searchValue"
-        params["departmentId"] = "departmentId"
-        params["hasArticles"] = "true"
-        params["include"] = "allArticleCount,sectionsCount"
+        params["limit"] = "50"
         ZDPortalKBAPI.geRootKBCategories(object : KBCategoriesCallback {
             override fun onKBCategoriesDownloaded(kbCategoriesList: KBCategoriesList) {
                 //Categories data downloaded
@@ -47,10 +40,6 @@ class KBAPISample {
 
     fun getKBRootCategoriesTree() {
         val params = HashMap<String, String>()
-        params["locale"] = "localeCode"
-        params["sortBy"] = "name"
-//        params["sortBy"] = "order"
-        params["hasArticles"] = "true"
         params["include"] = "allArticleCount,sectionsCount"
         ZDPortalKBAPI.getKBCategoriesTree(object : KBCategoryCallback {
             override fun onKBCategoryDownloaded(category: KBCategory) {
@@ -66,9 +55,6 @@ class KBAPISample {
     fun getKBCategoryWithPermalink() {
         val params = HashMap<String, String>()
         params["permalink"] = "permalink"
-        params["locale"] = "localeCode"
-        params["departmentId"] = "departmentId"
-        params["hasArticles"] = "false"
         params["include"] = "sectionsCount,allArticleCount,articlesCount"
         ZDPortalKBAPI.getKBCategoryWithPermalink(object : KBCategoryCallback {
             override fun onKBCategoryDownloaded(kbCategory: KBCategory) {
@@ -83,14 +69,8 @@ class KBAPISample {
 
     fun getArticles() {
         val params = HashMap<String, String>()
-        params["categoryId"] = "categoryId"
         params["from"] = "1"
         params["limit"] = "50"
-        params["locale"] = "localeCode"
-        params["includeChildCategoryArticles"] = "true"
-        params["sortBy"] = "-likeCount"
-//        params["sortBy"] = "-createdTime"
-        params["tag"] = "TagName"
         ZDPortalKBAPI.getArticlesList(object : ArticlesCallback {
             override fun onArticlesDownloaded(kbArticlesList: KBArticlesList) {
                 //Articles data downloaded
@@ -118,7 +98,6 @@ class KBAPISample {
         val params = HashMap<String, String>()
         params["from"] = "1"
         params["limit"] = "5"
-        params["locale"] = "localeCode"
         ZDPortalKBAPI.getRelatedArticles(
             "articleId",
             "localeCode",
@@ -201,11 +180,6 @@ class KBAPISample {
     fun searchArticles() {
         val params = HashMap<String, String>()
         params["searchStr"] = "searchString"
-        params["from"] = "1"
-        params["limit"] = "50"
-        params["locale"] = "localeCode"
-        params["departmentId"] = "deptId"
-        params["categoryId"] = "categoryId"
         ZDPortalKBAPI.searchArticles(object : ArticlesCallback {
             override fun onArticlesDownloaded(kbArticlesList: KBArticlesList) {
                 //Categories data downloaded
@@ -235,7 +209,6 @@ class KBAPISample {
         val params = HashMap<String, String>()
         params["from"] = "1"
         params["limit"] = "5"
-        params["sortBy"] = "-commentedTime"
         ZDPortalKBAPI.getArticleComments(object : ArticleCommentsCallback {
             override fun onCommentsDownloaded(commentsList: ArticleCommentsList) {
                 //Article comments data downloaded
@@ -269,11 +242,7 @@ class KBAPISample {
 
     fun getArticlesByTag() {
         val params = HashMap<String, String>()
-        params["categoryId"] = "categoryId"
         params["tag"] = "tag name"
-        params["from"] = "1"
-        params["limit"] = "5"
-        params["locale"] = "localeCode"
         ZDPortalKBAPI.articlesSearchByTag(
             object : ArticlesCallback {
                 override fun onArticlesDownloaded(kbArticlesList: KBArticlesList) {

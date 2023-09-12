@@ -19,14 +19,7 @@ public class KBAPISampleJava {
     public void getKBRootCategories() {
         HashMap<String, String> params = new HashMap<>();
         params.put("from", "1");
-        params.put("limit", "2");
-        params.put("locale", "localeCode");
-        params.put("sortBy", "name");
-//        params.put("sortBy", "order");
-        params.put("searchValue", "searchValue");
-        params.put("departmentId", "departmentId");
-        params.put("hasArticles", "true");
-        params.put("include", "allArticleCount,sectionsCount");
+        params.put("limit", "50");
         ZDPortalKBAPI.geRootKBCategories(new ZDPortalCallback.KBCategoriesCallback() {
             @Override
             public void onKBCategoriesDownloaded(KBCategoriesList kbCategoriesList) {
@@ -42,10 +35,6 @@ public class KBAPISampleJava {
 
     public void getKBRootCategoriesTree() {
         HashMap<String, String> params = new HashMap<>();
-        params.put("locale", "localeCode");
-        params.put("sortBy", "name");
-//        params.put("sortBy", "order");
-        params.put("hasArticles", "true");
         params.put("include", "allArticleCount,sectionsCount");
         ZDPortalKBAPI.getKBCategoriesTree(new ZDPortalCallback.KBCategoryCallback() {
             @Override
@@ -63,9 +52,6 @@ public class KBAPISampleJava {
     public void getKBCategoryWithPermalink(){
         HashMap<String, String> params = new HashMap<>();
         params.put("permalink", "permalink");
-        params.put("locale", "localeCode");
-        params.put("departmentId", "departmentId");
-        params.put("hasArticles", "false");
         params.put("include", "sectionsCount,allArticleCount,articlesCount");
         ZDPortalKBAPI.getKBCategoryWithPermalink(new ZDPortalCallback.KBCategoryCallback(){
 
@@ -83,14 +69,8 @@ public class KBAPISampleJava {
 
     public void getArticles() {
         HashMap<String, String> params = new HashMap<>();
-        params.put("categoryId", "categoryId");
         params.put("from", "1");
         params.put("limit", "50");
-        params.put("locale", "localeCode");
-        params.put("includeChildCategoryArticles", "true");
-        params.put("sortBy", "-likeCount");
-//        params.put("sortBy", "-createdTime");
-        params.put("tag", "TagName");
         ZDPortalKBAPI.getArticlesList(new ZDPortalCallback.ArticlesCallback() {
             @Override
             public void onArticlesDownloaded(KBArticlesList kbArticlesList) {
@@ -122,7 +102,6 @@ public class KBAPISampleJava {
         HashMap<String, String> params = new HashMap<>();
         params.put("from", "1");
         params.put("limit", "5");
-        params.put("locale", "localeCode");
         ZDPortalKBAPI.getRelatedArticles(
             "articleId",
             "localeCode",
@@ -216,11 +195,6 @@ public class KBAPISampleJava {
     public void searchArticles() {
         HashMap<String, String> params = new HashMap<>();
         params.put("searchStr", "searchString");
-        params.put("from", "1");
-        params.put("limit", "50");
-        params.put("locale", "localeCode");
-        params.put("departmentId", "deptId");
-        params.put("categoryId", "categoryId");
         ZDPortalKBAPI.searchArticles(new ZDPortalCallback.ArticlesCallback() {
             @Override
             public void onArticlesDownloaded(KBArticlesList kbArticlesList) {
@@ -254,7 +228,6 @@ public class KBAPISampleJava {
         HashMap<String, String> params = new HashMap<>();
         params.put("from", "1");
         params.put("limit", "5");
-        params.put("sortBy", "-commentedTime");
         ZDPortalKBAPI.getArticleComments(new ZDPortalCallback.ArticleCommentsCallback() {
             @Override
             public void onCommentsDownloaded(ArticleCommentsList commentsList) {
@@ -292,11 +265,7 @@ public class KBAPISampleJava {
 
     public void getArticlesByTag(){
         HashMap<String, String> params = new HashMap<>();
-        params.put("categoryId", "categoryId");
-        params.put("tag", "tag");
-        params.put("from", "1");
-        params.put("limit", "5");
-        params.put("locale", "localeCode");
+        params.put("tag", "tag name");
         ZDPortalKBAPI.articlesSearchByTag(
             new ZDPortalCallback.ArticlesCallback() {
                 @Override
