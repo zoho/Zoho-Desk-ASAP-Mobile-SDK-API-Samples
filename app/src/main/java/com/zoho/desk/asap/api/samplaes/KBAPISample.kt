@@ -29,7 +29,7 @@ class KBAPISample {
         params["limit"] = "50"
         ZDPortalKBAPI.geRootKBCategories(object : KBCategoriesCallback {
             override fun onKBCategoriesDownloaded(kbCategoriesList: KBCategoriesList) {
-                //Categories data downloaded
+                //Root Categories downloaded
             }
 
             override fun onException(e: ZDPortalException) {
@@ -43,11 +43,11 @@ class KBAPISample {
         params["include"] = "allArticleCount,sectionsCount"
         ZDPortalKBAPI.getKBCategoriesTree(object : KBCategoryCallback {
             override fun onKBCategoryDownloaded(category: KBCategory) {
-                //Categories data downloaded
+                //Category's tree downloaded
             }
 
             override fun onException(e: ZDPortalException) {
-                //Root Categories Exception
+                //Category's tree Exception
             }
         }, "RootCategoryId", params)
     }
@@ -58,11 +58,11 @@ class KBAPISample {
         params["include"] = "sectionsCount,allArticleCount,articlesCount"
         ZDPortalKBAPI.getKBCategoryWithPermalink(object : KBCategoryCallback {
             override fun onKBCategoryDownloaded(kbCategory: KBCategory) {
-                //categories data downloaded
+                //Category downloaded
             }
 
             override fun onException(exception: ZDPortalException) {
-                //categories Exception
+                //Category Exception
             }
         }, params)
     }
@@ -73,11 +73,11 @@ class KBAPISample {
         params["limit"] = "50"
         ZDPortalKBAPI.getArticlesList(object : ArticlesCallback {
             override fun onArticlesDownloaded(kbArticlesList: KBArticlesList) {
-                //Articles data downloaded
+                //Articles list downloaded
             }
 
             override fun onException(exception: ZDPortalException) {
-                //Articles Exception
+                //Articles list Exception
             }
         }, params)
     }
@@ -85,7 +85,7 @@ class KBAPISample {
     fun getArticleDetails() {
         ZDPortalKBAPI.getArticleDetails(object : ArticleDetailsCallback {
             override fun onArticleDetailsDownloaded(kbArticle: KBArticle) {
-                //Article details data downloaded
+                //Article details downloaded
             }
 
             override fun onException(exception: ZDPortalException) {
@@ -98,26 +98,21 @@ class KBAPISample {
         val params = HashMap<String, String>()
         params["from"] = "1"
         params["limit"] = "5"
-        ZDPortalKBAPI.getRelatedArticles(
-            "articleId",
-            "localeCode",
-            object : ArticlesCallback {
+        ZDPortalKBAPI.getRelatedArticles("articleId", "localeCode", object : ArticlesCallback {
                 override fun onArticlesDownloaded(kbArticlesList: KBArticlesList) {
-                    //Related Articles data downloaded
+                    //Related Articles downloaded
                 }
 
                 override fun onException(exception: ZDPortalException) {
                     //Related Articles Exception
                 }
-            },
-            params
-        )
+            }, params)
     }
 
     fun getArticleAttachmentList() {
         ZDPortalKBAPI.getArticleAttachments(object : AttachmentsCallback {
             override fun onAttachmentsDownloaded(attachmentsList: ASAPAttachmentsList) {
-                //Article Attachments data downloaded
+                //Article Attachments downloaded
             }
 
             override fun onException(exception: ZDPortalException) {
@@ -129,11 +124,11 @@ class KBAPISample {
     fun likeArticle() {
         ZDPortalKBAPI.likeArticle(object : ArticleUpdateVoteCallback {
             override fun onArticleUpdated() {
-                //Article Liked Successfully
+                //Article up-vote Succeed
             }
 
             override fun onException(exception: ZDPortalException) {
-                //Article Liked Exception
+                //Article up-vote Exception
             }
         }, "articleId", "localeCode", null)
     }
@@ -141,26 +136,26 @@ class KBAPISample {
     fun dislikeArticle() {
         ZDPortalKBAPI.dislikeArticle(object : ArticleUpdateVoteCallback {
             override fun onArticleUpdated() {
-                //Article Disliked Successfully
+                //Article down-vote Succeed
             }
 
             override fun onException(exception: ZDPortalException) {
-                //Article Dislike Exception
+                //Article down-vote Exception
             }
         }, "articleId", "localeCode", null)
     }
 
-    fun feedbackArticle() {
+    fun articleFeedback() {
         val feedbackContent = HashMap<String, String>()
         feedbackContent["email"] = "userEmail"
         feedbackContent["feedback"] = "feedbackContent"
         ZDPortalKBAPI.articleFeedback(object : ArticleFeedbackCallback {
             override fun onFeedbackPosted() {
-                //Article Feedback posted
+                //Article feedback posted
             }
 
             override fun onException(exception: ZDPortalException) {
-                //Article Feedback Exception
+                //Article feedback Exception
             }
         }, "articleId", "localeCode", feedbackContent, null)
     }
@@ -168,11 +163,11 @@ class KBAPISample {
     fun getArticleAttachmentContent() {
         ZDPortalKBAPI.downloadArticleAttachment(object : DownloadAttachmentCallback {
             override fun onAttachmentDownloaded(stream: InputStream) {
-                //Article Attachment content downloaded
+                //Article attachment's stream downloaded
             }
 
             override fun onException(exception: ZDPortalException) {
-                //Article Attachment Exception
+                //Article attachment Exception
             }
         }, "articleId", "localeCode", "attachmentId", null)
     }
@@ -182,11 +177,11 @@ class KBAPISample {
         params["searchStr"] = "searchString"
         ZDPortalKBAPI.searchArticles(object : ArticlesCallback {
             override fun onArticlesDownloaded(kbArticlesList: KBArticlesList) {
-                //Categories data downloaded
+                //Articles list downloaded
             }
 
             override fun onException(exception: ZDPortalException) {
-                //Root Categories Exception
+                //Articles list exception
             }
         }, false, params)
     }
@@ -196,11 +191,11 @@ class KBAPISample {
         params["permalink"] = "permalink"
         ZDPortalKBAPI.getArticleDetailsWithPermalink(object : ArticleDetailsCallback {
             override fun onArticleDetailsDownloaded(kbArticle: KBArticle) {
-                //Article data downloaded
+                //Article details downloaded
             }
 
             override fun onException(exception: ZDPortalException) {
-                //Article Exception
+                //Article details Exception
             }
         }, params)
     }
@@ -211,7 +206,7 @@ class KBAPISample {
         params["limit"] = "5"
         ZDPortalKBAPI.getArticleComments(object : ArticleCommentsCallback {
             override fun onCommentsDownloaded(commentsList: ArticleCommentsList) {
-                //Article comments data downloaded
+                //Article comments downloaded
             }
 
             override fun onException(exception: ZDPortalException) {
@@ -224,37 +219,29 @@ class KBAPISample {
         val params = HashMap<String, String>()
         params["from"] = "1"
         params["limit"] = "5"
-        ZDPortalKBAPI.getPrevNextArticles(
-            "articleId",
-            "localeCode",
-            object : KBPrevNextArticlesCallback {
+        ZDPortalKBAPI.getPrevNextArticles("articleId", "localeCode", object : KBPrevNextArticlesCallback {
                 override fun onArticlesDownloaded(kbArticlesList: KBPrevNextArticlesList) {
-                    //Previous Next Articles data downloaded
+                    //Articles list downloaded
                 }
 
                 override fun onException(exception: ZDPortalException) {
-                    //Previous Next Articles Exception
+                    //Articles list Exception
                 }
-            },
-            params
-        )
+            }, params)
     }
 
     fun getArticlesByTag() {
         val params = HashMap<String, String>()
         params["tag"] = "tag name"
-        ZDPortalKBAPI.articlesSearchByTag(
-            object : ArticlesCallback {
+        ZDPortalKBAPI.articlesSearchByTag(object : ArticlesCallback {
                 override fun onArticlesDownloaded(kbArticlesList: KBArticlesList) {
-                    //Articles data downloaded
+                    //Articles list downloaded
                 }
 
                 override fun onException(exception: ZDPortalException) {
-                    //Articles Exception
+                    //Articles list Exception
                 }
-            },
-            params
-        )
+            }, params)
     }
 
 }

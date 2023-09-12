@@ -23,7 +23,7 @@ public class KBAPISampleJava {
         ZDPortalKBAPI.geRootKBCategories(new ZDPortalCallback.KBCategoriesCallback() {
             @Override
             public void onKBCategoriesDownloaded(KBCategoriesList kbCategoriesList) {
-                //Categories data downloaded
+                //Root Categories downloaded
             }
 
             @Override
@@ -39,17 +39,17 @@ public class KBAPISampleJava {
         ZDPortalKBAPI.getKBCategoriesTree(new ZDPortalCallback.KBCategoryCallback() {
             @Override
             public void onKBCategoryDownloaded(KBCategory category) {
-                //Categories data downloaded
+                //Category's tree downloaded
             }
 
             @Override
             public void onException(ZDPortalException e) {
-                //Root Categories Exception
+                //Category's tree Exception
             }
         },"RootCategoryId", params);
     }
 
-    public void getKBCategoryWithPermalink(){
+    public void getKBCategoryWithPermalink() {
         HashMap<String, String> params = new HashMap<>();
         params.put("permalink", "permalink");
         params.put("include", "sectionsCount,allArticleCount,articlesCount");
@@ -57,29 +57,29 @@ public class KBAPISampleJava {
 
             @Override
             public void onKBCategoryDownloaded(KBCategory kbCategory) {
-                //categories data downloaded
+                //Category downloaded
             }
 
             @Override
             public void onException(ZDPortalException exception) {
-                //categories Exception
+                //Category Exception
             }
         }, params);
     }
 
-    public void getArticles() {
+    public void getArticlesList() {
         HashMap<String, String> params = new HashMap<>();
         params.put("from", "1");
         params.put("limit", "50");
         ZDPortalKBAPI.getArticlesList(new ZDPortalCallback.ArticlesCallback() {
             @Override
             public void onArticlesDownloaded(KBArticlesList kbArticlesList) {
-                //Articles data downloaded
+                //Articles list downloaded
             }
 
             @Override
             public void onException(ZDPortalException exception) {
-                //Articles Exception
+                //Articles list Exception
             }
         }, params);
     }
@@ -88,7 +88,7 @@ public class KBAPISampleJava {
         ZDPortalKBAPI.getArticleDetails(new ZDPortalCallback.ArticleDetailsCallback() {
             @Override
             public void onArticleDetailsDownloaded(KBArticle kbArticle) {
-                //Article details data downloaded
+                //Article details downloaded
             }
 
             @Override
@@ -98,7 +98,7 @@ public class KBAPISampleJava {
         }, "articleId", "localeCode", null);
     }
 
-    public void getRelatedArticles(){
+    public void getRelatedArticles() {
         HashMap<String, String> params = new HashMap<>();
         params.put("from", "1");
         params.put("limit", "5");
@@ -108,7 +108,7 @@ public class KBAPISampleJava {
             new ZDPortalCallback.ArticlesCallback() {
                 @Override
                 public void onArticlesDownloaded(KBArticlesList kbArticlesList) {
-                    //Related Articles data downloaded
+                    //Related Articles downloaded
                 }
                 @Override
                 public void onException(ZDPortalException exception) {
@@ -119,11 +119,11 @@ public class KBAPISampleJava {
         );
     }
 
-    public void getArticleAttachmentList(){
+    public void getArticleAttachmentList() {
         ZDPortalKBAPI.getArticleAttachments(new ZDPortalCallback.AttachmentsCallback(){
             @Override
             public void onAttachmentsDownloaded(ASAPAttachmentsList attachmentsList) {
-                //Article Attachments data downloaded
+                //Article Attachments downloaded
             }
 
             @Override
@@ -133,47 +133,47 @@ public class KBAPISampleJava {
         }, "articleId", "localeCode", null);
     }
 
-    public void likeArticle(){
+    public void likeArticle() {
         ZDPortalKBAPI.likeArticle(new ZDPortalCallback.ArticleUpdateVoteCallback() {
             @Override
             public void onArticleUpdated() {
-                //Article Liked Successfully
+                //Article up-vote Succeed
             }
 
             @Override
             public void onException(ZDPortalException exception) {
-                //Article Liked Exception
+                //Article up-vote Exception
             }
         }, "articleId", "localeCode", null);
     }
 
-    public void dislikeArticle(){
+    public void dislikeArticle() {
         ZDPortalKBAPI.dislikeArticle(new ZDPortalCallback.ArticleUpdateVoteCallback() {
             @Override
             public void onArticleUpdated() {
-                //Article Disliked Successfully
+                //Article down-vote Succeed
             }
 
             @Override
             public void onException(ZDPortalException exception) {
-                //Article Dislike Exception
+                //Article down-vote Exception
             }
         }, "articleId", "localeCode", null);
     }
 
-    public void feedbackArticle(){
+    public void articleFeedback() {
         HashMap<String, String> feedbackContent = new HashMap<>();
         feedbackContent.put("email", "userEmail");
         feedbackContent.put("feedback", "feedbackContent");
         ZDPortalKBAPI.articleFeedback(new ZDPortalCallback.ArticleFeedbackCallback() {
             @Override
             public void onFeedbackPosted() {
-                //Article Feedback posted
+                //Article feedback posted
             }
 
             @Override
             public void onException(ZDPortalException exception) {
-                //Article Feedback Exception
+                //Article feedback Exception
             }
         }, "articleId", "localeCode", feedbackContent, null);
     }
@@ -182,12 +182,12 @@ public class KBAPISampleJava {
         ZDPortalKBAPI.downloadArticleAttachment(new ZDPortalCallback.DownloadAttachmentCallback(){
             @Override
             public void onAttachmentDownloaded(InputStream stream) {
-                //Article Attachment content downloaded
+                //Article attachment's stream downloaded
             }
 
             @Override
             public void onException(ZDPortalException exception) {
-                //Article Attachment Exception
+                //Article attachment Exception
             }
         }, "articleId", "localeCode", "attachmentId", null);
     }
@@ -198,40 +198,40 @@ public class KBAPISampleJava {
         ZDPortalKBAPI.searchArticles(new ZDPortalCallback.ArticlesCallback() {
             @Override
             public void onArticlesDownloaded(KBArticlesList kbArticlesList) {
-                //Categories data downloaded
+                //Articles list downloaded for given search string
             }
 
             @Override
             public void onException(ZDPortalException exception) {
-                //Root Categories Exception
+                //Articles Exception
             }
         }, false, params);
     }
 
-    public void getArticleDetailsByPermalink(){
+    public void getArticleDetailsByPermalink() {
         HashMap<String, String> params = new HashMap<>();
         params.put("permalink", "permalink");
         ZDPortalKBAPI.getArticleDetailsWithPermalink(new ZDPortalCallback.ArticleDetailsCallback() {
             @Override
             public void onArticleDetailsDownloaded(KBArticle kbArticle) {
-                //Article data downloaded
+                //Article details downloaded
             }
 
             @Override
             public void onException(ZDPortalException exception) {
-                //Article Exception
+                //Article details Exception
             }
         }, params);
     }
 
-    public void getArticleComments(){
+    public void getArticleComments() {
         HashMap<String, String> params = new HashMap<>();
         params.put("from", "1");
         params.put("limit", "5");
         ZDPortalKBAPI.getArticleComments(new ZDPortalCallback.ArticleCommentsCallback() {
             @Override
             public void onCommentsDownloaded(ArticleCommentsList commentsList) {
-                //Article comments data downloaded
+                //Article comments downloaded
             }
 
             @Override
@@ -241,45 +241,37 @@ public class KBAPISampleJava {
         }, "articleId", "localeCode", params);
     }
 
-    public void getPreviousNextArticles(){
+    public void getPreviousNextArticles() {
         HashMap<String, String> params = new HashMap<>();
         params.put("from", "1");
         params.put("limit", "5");
-        ZDPortalKBAPI.getPrevNextArticles(
-            "articleId",
-            "localeCode",
-            new ZDPortalCallback.KBPrevNextArticlesCallback() {
+        ZDPortalKBAPI.getPrevNextArticles("articleId", "localeCode", new ZDPortalCallback.KBPrevNextArticlesCallback() {
                 @Override
                 public void onArticlesDownloaded(KBPrevNextArticlesList kbArticlesList) {
-                    //Previous Next Articles data downloaded
+                    //Previous Next Articles downloaded
                 }
 
                 @Override
                 public void onException(ZDPortalException exception) {
                     //Previous Next Articles Exception
                 }
-            },
-            params
-        );
+            }, params);
     }
 
-    public void getArticlesByTag(){
+    public void articlesSearchByTag() {
         HashMap<String, String> params = new HashMap<>();
         params.put("tag", "tag name");
-        ZDPortalKBAPI.articlesSearchByTag(
-            new ZDPortalCallback.ArticlesCallback() {
+        ZDPortalKBAPI.articlesSearchByTag(new ZDPortalCallback.ArticlesCallback() {
                 @Override
                 public void onArticlesDownloaded(KBArticlesList kbArticlesList) {
-                    //Articles data downloaded
+                    //Articles downloaded
                 }
 
                 @Override
                 public void onException(ZDPortalException exception) {
                     //Articles Exception
                 }
-            },
-            params
-        );
+            }, params);
     }
 
 }
