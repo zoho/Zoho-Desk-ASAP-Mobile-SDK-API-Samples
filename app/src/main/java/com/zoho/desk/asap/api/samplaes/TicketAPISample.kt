@@ -1,22 +1,10 @@
 package com.zoho.desk.asap.api.samplaes
 
+import com.zoho.desk.asap.api.ZDPortalAPI
 import com.zoho.desk.asap.api.ZDPortalCallback
 import com.zoho.desk.asap.api.ZDPortalException
 import com.zoho.desk.asap.api.ZDPortalTicketsAPI
-import com.zoho.desk.asap.api.response.ASAPAttachmentUploadResponse
-import com.zoho.desk.asap.api.response.ASAPAttachmentsList
-import com.zoho.desk.asap.api.response.LayoutRulesList
-import com.zoho.desk.asap.api.response.Ticket
-import com.zoho.desk.asap.api.response.TicketComment
-import com.zoho.desk.asap.api.response.TicketConversation
-import com.zoho.desk.asap.api.response.TicketFieldsList
-import com.zoho.desk.asap.api.response.TicketForm
-import com.zoho.desk.asap.api.response.TicketResolution
-import com.zoho.desk.asap.api.response.TicketTemplate
-import com.zoho.desk.asap.api.response.TicketThread
-import com.zoho.desk.asap.api.response.TicketThreads
-import com.zoho.desk.asap.api.response.TicketsList
-import com.zoho.desk.asap.api.response.ValidationRulesList
+import com.zoho.desk.asap.api.response.*
 import org.json.JSONObject
 import java.io.File
 import java.io.InputStream
@@ -25,7 +13,32 @@ import java.util.HashMap
 
 class TicketAPISample {
 
-    fun getTicketForms() {
+    fun getDepartmentsList() {
+        ZDPortalAPI.getDepartments(object : ZDPortalCallback.DepartmensCallback{
+            override fun onDepartmentsDownloaded(p0: DepartmentsList?) {
+                //Departments list downloaded
+            }
+
+            override fun onException(p0: ZDPortalException?) {
+                //Departments list exception
+            }
+        }, null)
+    }
+
+    fun getLayoutsList() {
+        val params = hashMapOf<String, String>()
+        params["departmentId"] = "departmentId"
+        ZDPortalAPI.getDepartments(object : ZDPortalCallback.DepartmensCallback{
+            override fun onDepartmentsDownloaded(p0: DepartmentsList?) {
+                //Layouts list downloaded
+            }
+
+            override fun onException(p0: ZDPortalException?) {
+                //Layouts list exception
+            }
+        }, null)
+    }
+    fun getTicketForm() {
         val params = hashMapOf<String, String>()
         params["departmentId"] = "departmentId"
         params["layoutId"] = "layoutId"
