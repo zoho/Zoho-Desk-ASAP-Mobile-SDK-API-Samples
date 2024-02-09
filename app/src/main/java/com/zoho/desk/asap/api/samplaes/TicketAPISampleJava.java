@@ -1,11 +1,14 @@
 package com.zoho.desk.asap.api.samplaes;
 
+import com.zoho.desk.asap.api.ZDPortalAPI;
 import com.zoho.desk.asap.api.ZDPortalCallback;
 import com.zoho.desk.asap.api.ZDPortalException;
 import com.zoho.desk.asap.api.ZDPortalTicketsAPI;
 import com.zoho.desk.asap.api.response.ASAPAttachmentUploadResponse;
 import com.zoho.desk.asap.api.response.ASAPAttachmentsList;
+import com.zoho.desk.asap.api.response.DepartmentsList;
 import com.zoho.desk.asap.api.response.LayoutRulesList;
+import com.zoho.desk.asap.api.response.Layouts;
 import com.zoho.desk.asap.api.response.Ticket;
 import com.zoho.desk.asap.api.response.TicketComment;
 import com.zoho.desk.asap.api.response.TicketConversation;
@@ -23,6 +26,36 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TicketAPISampleJava {
+
+    public final void getDepartmentsList() {
+        ZDPortalAPI.getDepartments(new ZDPortalCallback.DepartmensCallback() {
+            @Override
+            public void onDepartmentsDownloaded(DepartmentsList departmentsList) {
+                //Departments list downloaded
+            }
+
+            @Override
+            public void onException(ZDPortalException e) {
+                //Departments list exception
+            }
+        }, null);
+    }
+
+    public final void getLayoutsList() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("departmentId", "departmentId");
+        ZDPortalAPI.getLayouts(new ZDPortalCallback.LayoutsCallback() {
+            @Override
+            public void onLayoutsDownloaded(Layouts layouts) {
+                //Layouts list downloaded
+            }
+
+            @Override
+            public void onException(ZDPortalException e) {
+                //Layouts list exception
+            }
+        }, params);
+    }
 
     public final void getTicketForms() {
         HashMap<String, String> params = new HashMap<>();

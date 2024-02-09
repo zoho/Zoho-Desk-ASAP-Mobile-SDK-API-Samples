@@ -28,8 +28,8 @@ class TicketAPISample {
     fun getLayoutsList() {
         val params = hashMapOf<String, String>()
         params["departmentId"] = "departmentId"
-        ZDPortalAPI.getDepartments(object : ZDPortalCallback.DepartmensCallback{
-            override fun onDepartmentsDownloaded(p0: DepartmentsList?) {
+        ZDPortalAPI.getLayouts(object : ZDPortalCallback.LayoutsCallback{
+            override fun onLayoutsDownloaded(p0: Layouts?) {
                 //Layouts list downloaded
             }
 
